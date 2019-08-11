@@ -14,6 +14,7 @@ On Ubuntu this can be done using:
 ```bash
 apt-get install portaudio19-dev
 ```
+See [the PortAudio library](https://github.com/gordonklaus/portaudio) for more information.
 
 ## Licence
 
