@@ -1,13 +1,13 @@
 package main
 
 import (
-	"os"
 	"fmt"
-	"log"
-	"strings"
-	"os/signal"
 	"github.com/faiface/beep/wav"
+	"log"
 	"markkremer.nl/microphone"
+	"os"
+	"os/signal"
+	"strings"
 )
 
 func main() {

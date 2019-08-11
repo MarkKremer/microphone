@@ -3,8 +3,8 @@
 package microphone
 
 import (
-	"github.com/gordonklaus/portaudio"
 	"github.com/faiface/beep"
+	"github.com/gordonklaus/portaudio"
 )
 
 // Init initializes internal datastructures of PortAudio and
@@ -56,7 +56,7 @@ func OpenDefaultStream(sampleRate beep.SampleRate) (s *Streamer, format beep.For
 		// NOTE(m): I couldn't find how to obtain the actual precision
 		// from the microphone. 3 bytes is the highest precision
 		// supported by the beep library for saving WAV files.
-		Precision:   3,
+		Precision: 3,
 	}
 	return
 }

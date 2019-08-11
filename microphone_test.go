@@ -1,15 +1,15 @@
 package microphone
 
 import (
+	"fmt"
 	"github.com/faiface/beep/wav"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 	"log"
 	"os"
 	"os/signal"
-	"fmt"
 	"strings"
 	"testing"
-	"github.com/stretchr/testify/assert"
-	"github.com/pkg/errors"
 )
 
 func ExampleOpenDefaultStream_recordWav() {
@@ -126,11 +126,11 @@ func TestStreamer_Stream_withSmallerSampleSizeAsInternalBufferSize(t *testing.T)
 }
 
 func TestStreamer_Stream_withBiggerSampleSizeAsInternalBufferSize(t *testing.T) {
-	testStreamWithSampleSize(t, bufferSize + 100)
+	testStreamWithSampleSize(t, bufferSize+100)
 }
 
 func TestStreamer_Stream_withDoubleSampleSizeAsInternalBufferSize(t *testing.T) {
-	testStreamWithSampleSize(t, bufferSize * 2)
+	testStreamWithSampleSize(t, bufferSize*2)
 }
 
 var ErrTest = errors.New("error for testing")
