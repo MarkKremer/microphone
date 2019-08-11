@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/MarkKremer/microphone"
 	"github.com/faiface/beep/wav"
 	"log"
-	"markkremer.nl/microphone"
 	"os"
 	"os/signal"
 	"strings"
