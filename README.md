@@ -5,7 +5,7 @@ and wraps its microphone stream in a beep.StreamCloser
 so that it can be used with everything else in the [Beep library](https://github.com/faiface/beep).
 
 ```bash
-go get github.com/MarkKremer/microphone
+go get -u github.com/MarkKremer/microphone
 ```
 
 ## Installation
