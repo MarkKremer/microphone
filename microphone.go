@@ -38,12 +38,12 @@ func Terminate() error {
 const bufferSize = 512
 
 // OpenDefaultStream opens the default input stream.
-func OpenDefaultStream(sampleRate beep.SampleRate) (s *Streamer, format beep.Format, err error) {
+func OpenDefaultStream(sampleRate beep.SampleRate, inputChannels int) (s *Streamer, format beep.Format, err error) {
 	s = &Streamer{}
 	s.buffer = make([][]float32, 2)
 	s.buffer[0] = make([]float32, bufferSize)
 	s.buffer[1] = make([]float32, bufferSize)
-	s.stream, err = portaudio.OpenDefaultStream(2, 0, float64(sampleRate), bufferSize, s.buffer)
+	s.stream, err = portaudio.OpenDefaultStream(inputChannels, 0, float64(sampleRate), bufferSize, s.buffer)
 	if err != nil {
 		return nil, beep.Format{}, err
 	}
@@ -52,7 +52,7 @@ func OpenDefaultStream(sampleRate beep.SampleRate) (s *Streamer, format beep.For
 	s.pos = bufferSize
 	format = beep.Format{
 		SampleRate:  sampleRate,
-		NumChannels: 2,
+		NumChannels: inputChannels,
 		// NOTE(m): I couldn't find how to obtain the actual precision
 		// from the microphone. 3 bytes is the highest precision
 		// supported by the beep library for saving WAV files.
