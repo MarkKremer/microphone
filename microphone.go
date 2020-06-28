@@ -118,7 +118,7 @@ func (s *Streamer) Stream(samples [][2]float64) (int, bool) {
 
 	var i int
 	for i = 0; i < n; i++ {
-		samples[i] = convertBufferIntoSamples(samples[i], s.buffer, s.pos+i)
+		samples[i] = convertBufferIntoSamples(s.buffer, s.pos+i)
 	}
 
 	if n == len(samples) {
@@ -139,7 +139,7 @@ func (s *Streamer) Stream(samples [][2]float64) (int, bool) {
 		}
 
 		for i = 0; i < m; i++ {
-			samples[n+i] = convertBufferIntoSamples(samples[n+i], s.buffer, i)
+			samples[n+i] = convertBufferIntoSamples(s.buffer, i)
 		}
 
 		n += m
@@ -161,7 +161,9 @@ func (s *Streamer) Close() error {
 	return s.stream.Close()
 }
 
-func convertBufferIntoSamples(samples [2]float64, buffer [][]float32, bufferPos int) [2]float64 {
+func convertBufferIntoSamples(buffer [][]float32, bufferPos int) [2]float64 {
+	var samples [2]float64
+
 	if len(buffer) > 1 {
 		samples[0] = float64(buffer[0][bufferPos])
 		samples[1] = float64(buffer[1][bufferPos])
