@@ -3,8 +3,13 @@
 package microphone
 
 import (
+	"errors"
 	"github.com/faiface/beep"
 	"github.com/gordonklaus/portaudio"
+)
+
+var (
+	invalidAmountOfInputChannelsError = errors.New("invalid amount of inputChannels specified. microphone.OpenDefaultStream func expects exactly 2 or 1")
 )
 
 // Init initializes internal datastructures of PortAudio and
@@ -39,10 +44,17 @@ const bufferSize = 512
 
 // OpenDefaultStream opens the default input stream.
 func OpenDefaultStream(sampleRate beep.SampleRate, inputChannels int) (s *Streamer, format beep.Format, err error) {
+	if inputChannels > 2 || inputChannels == 0 {
+		return nil, beep.Format{}, invalidAmountOfInputChannelsError
+	}
+
 	s = &Streamer{}
-	s.buffer = make([][]float32, 2)
-	s.buffer[0] = make([]float32, bufferSize)
-	s.buffer[1] = make([]float32, bufferSize)
+	s.buffer = make([][]float32, inputChannels)
+
+	for i := range s.buffer {
+		s.buffer[i] = make([]float32, bufferSize)
+	}
+
 	s.stream, err = portaudio.OpenDefaultStream(inputChannels, 0, float64(sampleRate), bufferSize, s.buffer)
 	if err != nil {
 		return nil, beep.Format{}, err
@@ -106,8 +118,7 @@ func (s *Streamer) Stream(samples [][2]float64) (int, bool) {
 
 	var i int
 	for i = 0; i < n; i++ {
-		samples[i][0] = float64(s.buffer[0][s.pos+i])
-		samples[i][1] = float64(s.buffer[1][s.pos+i])
+		samples[i] = convertBufferIntoSamples(samples[i], s.buffer, s.pos+i)
 	}
 
 	if n == len(samples) {
@@ -128,8 +139,7 @@ func (s *Streamer) Stream(samples [][2]float64) (int, bool) {
 		}
 
 		for i = 0; i < m; i++ {
-			samples[n+i][0] = float64(s.buffer[0][i])
-			samples[n+i][1] = float64(s.buffer[1][i])
+			samples[n+i] = convertBufferIntoSamples(samples[n+i], s.buffer, i)
 		}
 
 		n += m
@@ -149,4 +159,18 @@ func (s *Streamer) Err() error {
 // Close terminates the stream.
 func (s *Streamer) Close() error {
 	return s.stream.Close()
+}
+
+func convertBufferIntoSamples(samples [2]float64, buffer [][]float32, bufferPos int) [2]float64 {
+	if len(buffer) > 1 {
+		samples[0] = float64(buffer[0][bufferPos])
+		samples[1] = float64(buffer[1][bufferPos])
+
+		return samples
+	}
+
+	samples[0] = float64(buffer[0][bufferPos])
+	samples[1] = float64(buffer[0][bufferPos])
+
+	return samples
 }
