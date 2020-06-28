@@ -25,7 +25,7 @@ func ExampleOpenDefaultStream_recordWav() {
 	}
 	defer Terminate()
 
-	stream, format, err := OpenDefaultStream(44100)
+	stream, format, err := OpenDefaultStream(44100, 1)
 	if err != nil {
 		log.Fatal(err)
 	}
