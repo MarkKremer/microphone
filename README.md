@@ -20,7 +20,7 @@ See [the PortAudio library](https://github.com/gordonklaus/portaudio) for more i
 
 Here is a short example of creating a microphone stream and sending it to the speaker. 
 
-```
+```go
 package main
 
 import (
