@@ -2,7 +2,7 @@ package microphone
 
 import (
 	"fmt"
-	"github.com/faiface/beep/wav"
+	"github.com/gopxl/beep/wav"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"log"

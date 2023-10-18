@@ -4,7 +4,7 @@ package microphone
 
 import (
 	"errors"
-	"github.com/faiface/beep"
+	"github.com/gopxl/beep"
 	"github.com/gordonklaus/portaudio"
 )
 

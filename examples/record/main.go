@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/MarkKremer/microphone"
-	"github.com/faiface/beep/wav"
+	"github.com/gopxl/beep/wav"
 	"log"
 	"os"
 	"os/signal"

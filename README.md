@@ -2,7 +2,7 @@
 
 Microphone is a small library that takes [this Go PortAudio library](https://github.com/gordonklaus/portaudio)
 and wraps its microphone stream in a beep.StreamCloser
-so that it can be used with everything else in the [Beep library](https://github.com/faiface/beep).
+so that it can be used with everything else in the [Beep library](https://github.com/gopxl/beep).
 
 ```bash
 go get -u github.com/MarkKremer/microphone
