@@ -2,14 +2,15 @@ package microphone
 
 import (
 	"fmt"
-	"github.com/gopxl/beep/wav"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"log"
 	"os"
 	"os/signal"
 	"strings"
 	"testing"
+
+	"github.com/gopxl/beep/v2/wav"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 )
 
 func ExampleOpenDefaultStream_recordWav() {
