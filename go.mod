@@ -1,4 +1,4 @@
-module github.com/MarkKremer/microphone
+module github.com/MarkKremer/microphone/v2
 
 go 1.21
 

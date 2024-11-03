@@ -7,7 +7,8 @@ import (
 	"os/signal"
 	"strings"
 
-	"github.com/MarkKremer/microphone"
+	"github.com/MarkKremer/microphone/v2"
+
 	"github.com/gopxl/beep/v2/wav"
 )
 
