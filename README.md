@@ -11,11 +11,15 @@ go get -u github.com/MarkKremer/microphone
 ## Installation
 This package requires that you have the PortAudio development headers and libraries installed.
 On Ubuntu this can be done using:
-```bash
+```sh
 apt-get install portaudio19-dev
+```
+On Fedora this can be done using:
+```sh
+dnf install portaudio-devel
 ```
 See [the PortAudio library](https://github.com/gordonklaus/portaudio) for more information.
 
-## Licence
+## License
 
 [MIT](https://github.com/MarkKremer/microphone/blob/master/LICENSE)

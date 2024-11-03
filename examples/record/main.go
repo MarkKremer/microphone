@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/MarkKremer/microphone"
-	"github.com/gopxl/beep/wav"
 	"log"
 	"os"
 	"os/signal"
 	"strings"
+
+	"github.com/MarkKremer/microphone"
+	"github.com/gopxl/beep/v2/wav"
 )
 
 func main() {

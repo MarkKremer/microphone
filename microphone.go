@@ -4,12 +4,13 @@ package microphone
 
 import (
 	"errors"
-	"github.com/gopxl/beep"
+
+	"github.com/gopxl/beep/v2"
 	"github.com/gordonklaus/portaudio"
 )
 
 var (
-	invalidAmountOfInputChannelsError = errors.New("invalid amount of inputChannels specified. microphone.OpenDefaultStream func expects exactly 2 or 1")
+	errInvalidAmountOfInputChannels = errors.New("invalid amount of inputChannels specified. microphone.OpenDefaultStream func expects exactly 2 or 1")
 )
 
 // Init initializes internal datastructures of PortAudio and
@@ -45,7 +46,7 @@ const bufferSize = 512
 // OpenDefaultStream opens the default input stream.
 func OpenDefaultStream(sampleRate beep.SampleRate, inputChannels int) (s *Streamer, format beep.Format, err error) {
 	if inputChannels > 2 || inputChannels == 0 {
-		return nil, beep.Format{}, invalidAmountOfInputChannelsError
+		return nil, beep.Format{}, errInvalidAmountOfInputChannels
 	}
 
 	s = &Streamer{}
